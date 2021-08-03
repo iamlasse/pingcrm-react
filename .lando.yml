@@ -1,0 +1,47 @@
+name: telekom-crm
+recipe: laravel
+config:
+  cache: memcached
+  webroot: public
+  via: nginx
+  php: '7.4'
+  composer_version: '2.0.7'
+  xdebug: debug
+  database: mysql:5.7
+  ssl: true
+proxy:
+  mailhog:
+    - mailhog.telekom-crm.lndo.site
+  pma:
+    - pma.telekom-crm.lndo.site
+services:
+  appserver:
+    overrides:
+      environment:
+        WP_MAILHOG_HOST: mailhog
+  mailhog:
+    type: mailhog
+    portforward: false
+    hogfrom:
+      - appserver
+  pma:
+    type: phpmyadmin
+    hosts: database
+  database:
+    portforward: 3313
+env_file:
+  - local.env
+tooling:
+  phpunitdebug:
+    service: appserver
+    cmd: php -d xdebug.remote_port=9000 vendor/bin/phpunit
+  xdebug-on:
+    service: appserver
+    description: Enable xdebug for nginx.
+    cmd: docker-php-ext-enable xdebug && pkill -o -USR2 php-fpm
+    user: root
+  xdebug-off:
+    service: appserver
+    description: Disable xdebug for nginx.
+    cmd: rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && pkill -o -USR2 php-fpm
+    user: root

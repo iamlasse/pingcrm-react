@@ -113,13 +113,13 @@ export default () => {
           placeholder="Search…"
         />
       </div>
-      <button
+      {values?.search && <button
         onClick={reset}
         className="ml-3 text-sm text-gray-600 hover:text-gray-700 focus:text-indigo-700 focus:outline-none"
         type="button"
       >
         Reset
-      </button>
+      </button>}
     </div>
   );
 };

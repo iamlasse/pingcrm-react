@@ -7,13 +7,13 @@ export default ({ icon, link, text }) => {
   const isActive = route().current(link + '*');
 
   const iconClasses = classNames('w-4 h-4 mr-2', {
-    'text-white fill-current': isActive,
-    'text-indigo-400 group-hover:text-white fill-current': !isActive
+    'text-indigo-800 fill-current': isActive,
+    'text-indigo-600 group-hover:text-indigo-800 fill-current': !isActive
   });
 
   const textClasses = classNames({
-    'text-white': isActive,
-    'text-indigo-200 group-hover:text-white': !isActive
+    'text-indigo-800': isActive,
+    'text-indigo-600 group-hover:text-indigo-800': !isActive
   });
 
   return (

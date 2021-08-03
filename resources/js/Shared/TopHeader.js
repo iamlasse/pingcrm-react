@@ -20,7 +20,7 @@ export default () => {
           <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
         </svg>
         <div className={`${menuOpened ? '' : 'hidden'} absolute right-0 z-20`}>
-          <MainMenu className="relative z-20 px-8 py-4 pb-2 mt-2 bg-indigo-800 rounded shadow-lg" />
+          <MainMenu className="relative z-20 px-8 py-4 pb-2 mt-2 bg-white rounded shadow-lg" />
           <div
             onClick={() => {
               setMenuOpened(false);

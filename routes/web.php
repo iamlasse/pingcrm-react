@@ -39,6 +39,7 @@ Route::get('organizations/{organization}/edit')->name('organizations.edit')->use
 Route::put('organizations/{organization}')->name('organizations.update')->uses('OrganizationsController@update')->middleware('auth');
 Route::delete('organizations/{organization}')->name('organizations.destroy')->uses('OrganizationsController@destroy')->middleware('auth');
 Route::put('organizations/{organization}/restore')->name('organizations.restore')->uses('OrganizationsController@restore')->middleware('auth');
+Route::post('organizationsFromModal')->name('organizations.storeFromModal')->uses('OrganizationsController@storeFromModal')->middleware('auth');
 
 // Contacts
 Route::get('contacts')->name('contacts')->uses('ContactsController@index')->middleware('remember', 'auth');
@@ -56,3 +57,4 @@ Route::get('reports')->name('reports')->uses('ReportsController')->middleware('a
 Route::get('500', function () {
     echo $fail;
 });
+
